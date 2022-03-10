@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class BookParserTester {
 
+
     @Test
     public void parseStringToBookTest01(){
         String input = "title:Moby Dick;yearPublished:1851;author:Herman Melville";
