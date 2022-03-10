@@ -2,22 +2,18 @@ package com.codedifferently.review.parser;
 
 public class BookParser {
 
-    public static Book parseStringToBook(String input){
+    public static Book parseStringToBook(String input) throws BookParserException {
         String[] elements = input.split(";");
         Book book = new Book();
-        for (int x = 0; x < elements.length;x++) {
-            switch (x){
-                case 0:
-                    setValueOfTitle(book, elements[x]);
-                    break;
-                case 1:
-                    setValueYear(book,elements[x]);
-                    break;
-                case 2:
-                    setValueAuthor(book, elements[x]);
-                    break;
-                default:
-                    break;
+        for(String element:elements){
+            if(element.contains("title:")){
+                setValueOfTitle(book, element);
+            }else if(element.contains("yearPublished:")){
+                setValueYear(book,element);
+            }else if(element.contains("author:")){
+                setValueAuthor(book, element);
+            }else{
+                throw new BookParserException("Missing Key");
             }
         }
         return book;
